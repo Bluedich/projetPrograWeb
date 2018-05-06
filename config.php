@@ -2,8 +2,8 @@
 
 //Database Config
 $GLOBALS['dbServ'] = 'localhost';
-$GLOBALS['dbUser'] = 'hstinson';
-$GLOBALS['dbPass'] = 'jume44be';
+$GLOBALS['dbUser'] = 'root';
+$GLOBALS['dbPass'] = '';
 $GLOBALS['dbName'] = 'hstinson';
 
 //Other configs

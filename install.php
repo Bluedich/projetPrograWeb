@@ -2,13 +2,6 @@
 include("config.php");
 include("functions.php");
 
-function query_feedback($handle){
-  echo mysqli_info($handle);
-  echo "<br>";
-  echo mysqli_error($handle);
-  echo "<br>";
-}
-
 $createDb = "CREATE DATABASE IF NOT EXISTS {$GLOBALS['dbName']};";
 
 $cUsers = "CREATE TABLE IF NOT EXISTS `users` (
@@ -58,32 +51,34 @@ $cLikes = "CREATE TABLE IF NOT EXISTS `likes` (
 
 echo "Connection to MySQL Database.";
 echo "<br>";
+
+//Create Database if it doesnt exist
+$conn = new mysqli($GLOBALS['dbServ'],$GLOBALS['dbUser'],$GLOBALS['dbPass']);
+mysqli_query($conn, $createDb);
+
 $h = con();
+query_feedback($h);
 
 if (!$h) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-//Create Database if it doesnt exist
-mysqli_query($h, $createDb);
-query_feedback($h);
-
-echo "Creating 'users' table.\n";
+echo "Creating 'users' table.";
 echo "<br>";
 mysqli_query($h, $cUsers);
 query_feedback($h);
 
-echo "Creating 'links' table.\n";
+echo "Creating 'links' table.";
 echo "<br>";
 mysqli_query($h, $cLinks);
 query_feedback($h);
 
-echo "Creating 'comments' table.\n";
+echo "Creating 'comments' table.";
 echo "<br>";
 mysqli_query($h, $cComments);
 query_feedback($h);
 
-echo "Creating 'likes' table.\n";
+echo "Creating 'likes' table.";
 echo "<br>";
 mysqli_query($h, $cLikes);
 query_feedback($h);
