@@ -37,4 +37,30 @@ function checkLogin($email,$pwd){
     echo "Wrong username/password";
   }
 }
+
+function checkSignup($username,$mail,$pwd){
+  $h = con();
+  $r = mysqli_query($h, "SELECT id FROM users WHERE mail='$mail'");
+  query_feedback($h);
+  $r2 = mysqli_query($h, "SELECT id FROM users WHERE user='$username'");
+  query_feedback($h);
+  $row = mysqli_fetch_assoc($r);
+  $row2 = mysqli_fetch_assoc($r2);
+  if ($row!=NULL){
+    echo "There is already an account associated with this email.<br>";
+  }
+  $r = mysqli_query($h, "SELECT id FROM users WHERE mail='$mail'");
+  query_feedback($h);
+  $row = mysqli_fetch_assoc($r);
+  if ($row2!=NULL){
+    echo "This username is already taken.<br>";
+  }
+  if($row==NULL && $row2==NULL){
+    mysqli_query($h, "INSERT INTO users (mail, user, pwd) VALUES ('$mail','$username','$pwd')");
+    query_feedback($h);
+    header('Location: login.php'); //redirection to login
+    die();
+  }
+
+}
 ?>
