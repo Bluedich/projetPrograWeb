@@ -24,6 +24,17 @@ function checkLogin($email,$pwd){
   $h = con();
   $r = mysqli_query($h, "SELECT * FROM users WHERE pwd='$pwd' AND mail='$email'");
   query_feedback($h);
-
+  $row = mysqli_fetch_assoc($r);
+  if ($row!=NULL){
+    session_start();
+    $_SESSION['username']=$row['user'];
+    $_SESSION['mail']=$row['mail'];
+    $_SESSION['user ID']=$row['id'];
+    header('Location: index.php'); //redirection to index
+		die();
+  }
+  else{
+    echo "Wrong username/password";
+  }
 }
 ?>

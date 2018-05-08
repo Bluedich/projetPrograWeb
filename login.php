@@ -1,4 +1,10 @@
-<?php include("functions.php"); ?>
+<?php
+include("functions.php");
+if (session_status() == PHP_SESSION_ACTIVE) {
+  session_destroy();
+
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -15,10 +21,8 @@
       <div class="col-sm"></div>
       <div class="col-sm">
 <?php
-  $email=$_POST['email'];
-  $pwd=$_POST["pwd"];
-  if(isset($email) && isset($pwd)){
-    checkLogin($email,$pwd);
+  if(isset($_POST['email']) && isset($_POST["pwd"])){
+    checkLogin($_POST['email'],$_POST["pwd"]);
   }
 ?>
         <form method="post" action="login.php" class="form-signin">

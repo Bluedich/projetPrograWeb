@@ -1,5 +1,5 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
+if (session_status() == PHP_SESSION_ACTIVE) {
     header('Location: login.php');
 		die();
 }
