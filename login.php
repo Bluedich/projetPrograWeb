@@ -1,7 +1,10 @@
 <?php
+session_start();
+
 include("functions.php");
-if (session_status() == PHP_SESSION_ACTIVE) {
-  session_destroy();
+
+if(isset($_POST['email']) && isset($_POST["pwd"])){
+  checkLogin($_POST['email'],$_POST["pwd"]);
 }
 ?>
 <!DOCTYPE html>
@@ -15,30 +18,22 @@ if (session_status() == PHP_SESSION_ACTIVE) {
     <title><?php echo pageTitle()?>-Login</title>
 	</head>
   <body class="text-center">
-    <div class="row"><br><br><br></div>
+    <div class="row"><br><br></div>
     <div class="row">
       <div class="col-sm"></div>
       <div class="col-sm">
-<?php
-  if(isset($_POST['email']) && isset($_POST["pwd"])){
-    checkLogin($_POST['email'],$_POST["pwd"]);
-  }
-?>
         <form method="post" action="login.php" class="form-signin">
-          <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
           <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-          <label for="inputEmail" class="sr-only">Email address</label>
           <input name="email" type="email"  class="form-control" placeholder="Email address" required autofocus>
-          <label for="inputPassword" class="sr-only">Password</label>
+          <br>
           <input name="pwd" type="password" class="form-control" placeholder="Password" required>
-          <div class="checkbox mb-3">
-          </div>
-          <input type="submit" class="btn btn-success btn-send" value="Log in" name="validate">
+          <br>
+          <input type="submit" class="btn btn-primary btn-send" value="Log in" name="validate">
         </form>
+        <br>
         Don't have an account ? <a href="signup.php">Signup</a> here.
       </div>
       <div class="col-sm"></div>
     </div>
     <div class="row"></div>
-  </body>
 <?php include("footer.php"); ?>

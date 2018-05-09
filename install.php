@@ -18,7 +18,7 @@ $cComments = "CREATE TABLE IF NOT EXISTS `comments` (
   `text` text NOT NULL,
   `author` int(11) NOT NULL,
   `link` int(11) NOT NULL,
-  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `date` timestamp NOT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT fk_author_comments FOREIGN KEY (`author`) REFERENCES `users`(`id`),
   CONSTRAINT fk_link_comments FOREIGN KEY (`link`) REFERENCES `links`(`id`)
@@ -29,8 +29,7 @@ $cLinks = "CREATE TABLE IF NOT EXISTS `links` (
   `text` varchar(255) NOT NULL,
   `url` varchar(2000) NOT NULL,
   `author` int(11) NOT NULL,
-  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `description` text NOT NULL,
+  `date` timestamp NOT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`author`) REFERENCES `users`(`id`)
 ) ENGINE=InnoDB;";
@@ -40,7 +39,7 @@ $cLikes = "CREATE TABLE IF NOT EXISTS `likes` (
   `comment` int(11),
   `link` int(11),
   `value` int(1) NOT NULL,
-  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `date` timestamp NOT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`comment`) REFERENCES `comments`(`id`),
   FOREIGN KEY (`link`) REFERENCES `links`(`id`),

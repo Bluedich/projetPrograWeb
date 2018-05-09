@@ -11,7 +11,7 @@
         <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Post a link</a>
+        <a class="nav-link" href="createlink.php">Post a link</a>
       </li>
     </ul>
     <div class="nav-item dropdown navbar-nav">
@@ -21,7 +21,7 @@
       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
         <a class="dropdown-item" href="#">Profile</a>
         <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="login.php">Logout</a>
+        <a class="dropdown-item" href="logout.php">Logout</a>
       </div>
     </div>
     </nav>

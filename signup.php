@@ -23,24 +23,21 @@ include("functions.php");
 				?>
 				<form method="post" action="signup.php">
 					<div class="form-group row">
-						<label for="inputEmail3" class="col-sm-2 col-form-label">Username</label>
 						<div class="col-sm-10">
 							<input name='username' type="text" pattern=".{4,}" required title="4 characters minimum" class="form-control" id="inputEmail3" placeholder="Username" required autofocus>
 						</div>
 					</div>
 					<div class="form-group row">
-						<label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
 						<div class="col-sm-10">
 							<input name="email" type="email"  class="form-control" placeholder="Email address" required autofocus>
 						</div>
 					</div>
 					<div class="form-group row">
-						<label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
 						<div class="col-sm-10">
 							<input name=pwd pattern=".{6,}" required title="4 characters minimum" type="password" class="form-control" placeholder="Password" required autofocus>
 						</div>
 					</div>
-					<input type="submit" class="btn btn-success btn-send" value="Sign Up" name="validate">
+					<input type="submit" class="btn btn-primary btn-send" value="Sign Up" name="validate">
 				</form>
 				Already have an account ? <a href="login.php">Log in</a> here.
 			</div>

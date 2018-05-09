@@ -26,10 +26,10 @@ function checkLogin($email,$pwd){
   query_feedback($h);
   $row = mysqli_fetch_assoc($r);
   if ($row!=NULL){
-    session_start();
     $_SESSION['username']=$row['user'];
     $_SESSION['mail']=$row['mail'];
-    $_SESSION['user ID']=$row['id'];
+    $_SESSION['u_id']=$row['id'];
+    $_SESSION['login']=true;
     header('Location: index.php'); //redirection to index
 		die();
   }
@@ -61,6 +61,13 @@ function checkSignup($username,$mail,$pwd){
     header('Location: login.php'); //redirection to login
     die();
   }
+}
 
+function createLink($url,$text,$u_id){
+  $h = con();
+  mysqli_query($h, "INSERT INTO `links` (`text`, `url`, `author`, `date`) VALUES ('$text', '$url', '$u_id', CURRENT_TIMESTAMP)");
+  query_feedback($h);
+  header('Location: linkcreated.php');
+  die();
 }
 ?>
