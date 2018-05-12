@@ -12,7 +12,6 @@ include("header.php");
     </div>
     <br>
     <a href="index.php"><button type="button" class="btn btn-success">OK</button></a>
-    <a href="#"><button type="button" class="btn btn-primary">View Link</button></a>
   </div>
   <div class="col-sm"></div>
 </div>

@@ -16,7 +16,7 @@ include("header.php");
       <h1 class="h3 mb-3 font-weight-normal">Post a link</h1>
       <input name="url" type="url"  class="form-control" placeholder="Link url" required autofocus>
       <br>
-      <input name="text" type="text" class="form-control" placeholder="Link text" required>
+      <textarea name="text" type="text" rows="5" maxlength="1995" class="form-control" placeholder="Link text" required></textarea>
       <br>
       <input type="submit" class="btn btn-primary btn-send" value="Post" name="submit">
       <a href="index.php"><button type="button" class="btn btn-secondary btn-send">Cancel</button></a>

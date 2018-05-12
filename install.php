@@ -27,7 +27,7 @@ $cComments = "CREATE TABLE IF NOT EXISTS `comments` (
 
 $cLinks = "CREATE TABLE IF NOT EXISTS `links` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `text` varchar(255) NOT NULL,
+  `text` varchar(2000) NOT NULL,
   `url` varchar(2000) NOT NULL,
   `author` int(11) NOT NULL,
   `date` timestamp NOT NULL,

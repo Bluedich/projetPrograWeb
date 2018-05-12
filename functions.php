@@ -230,15 +230,15 @@ function getHotLinks($location){
     $author_id=$row['author_id'];
     $link_id=$row['link_id'];
     $author=getUsername($author_id);
-    echo '<div class="row shadow-sm p-3 mb-5 bg-white rounded">';
-    echo '  <div class="col">';
+    echo '<div class="row shadow-sm p-3 my-2 bg-white rounded">';
+    echo '  <div class="col text-truncate">';
     echo "    (Posted by <a href=profile.php?$author_id=>$author</a>)";
     echo '  </div>';
-    echo '  <div class="col">';
+    echo '  <div class="col text-truncate">';
     echo "    <a href=$url target='_blank'>$url</a>";
     echo '  </div>';
-    echo "  <div class='col'>";
-    echo "    <a href='link.php?=$link_id'>$text</a>";
+    echo "  <div class='col text-truncate'>";
+    echo "    <a href='link.php?link_id=$link_id'>$text</a>";
     echo "  </div>";
     echo "  <div class='col'>";
     likeDislikeButton("link",$link_id,$location);
@@ -249,5 +249,24 @@ function getHotLinks($location){
     //}
     $row=mysqli_fetch_assoc($r);
   }
+}
+
+function getLinktext($link_id){
+  $h = con();
+  $r = mysqli_query($h, "SELECT `text` FROM links WHERE id='$link_id'");
+  query_feedback($h);
+  $row=mysqli_fetch_assoc($r);
+  $text = $row['text'];
+  return $text;
+
+}
+
+function getLinkAuthor($link_id){
+  $h = con();
+  $r = mysqli_query($h, "SELECT author FROM links WHERE id='$link_id'");
+  query_feedback($h);
+  $row=mysqli_fetch_assoc($r);
+  $author = $row['author'];
+  return $author;
 }
 ?>
