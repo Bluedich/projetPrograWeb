@@ -9,6 +9,7 @@ $cUsers = "CREATE TABLE IF NOT EXISTS `users` (
   `mail` varchar(255) NOT NULL,
   `user` varchar(64) NOT NULL,
   `pwd` varchar(64) NOT NULL,
+  `last_con` timestamp NOT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT unicity_users UNIQUE (`mail`, `user`)
 ) ENGINE=InnoDB;";
@@ -38,14 +39,16 @@ $cLikes = "CREATE TABLE IF NOT EXISTS `likes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `comment` int(11),
   `link` int(11),
-  `value` int(1) NOT NULL,
+  `value` int(2) NOT NULL,
   `date` timestamp NOT NULL,
+  `user` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`comment`) REFERENCES `comments`(`id`),
   FOREIGN KEY (`link`) REFERENCES `links`(`id`),
+  CONSTRAINT fk_user_likes FOREIGN KEY (`user`) REFERENCES `users`(`id`),
   CONSTRAINT chk_likes_objectUnicity CHECK ((`comment` = null AND `link` != null) OR
     (`link` = null AND `comment` != null)),
-  CONSTRAINT chk_likes_value CHECK(`value` = 0 OR `value` = 1)
+  CONSTRAINT chk_likes_value CHECK(`value` = -1 OR `value` = 1)
 ) ENGINE=InnoDB;";
 
 echo "Connection to MySQL Database.";

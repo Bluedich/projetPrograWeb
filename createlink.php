@@ -7,7 +7,6 @@ include("header.php");
 ?>
 <?php include("navbar.php"); ?>
 <br><br><br>
-<?php $u_id = $_SESSION["u_id"]; echo "$u_id"; ?>
 <div class="row"><br><br><br></div>
 <div class="row">
   <div class="col-sm"></div>

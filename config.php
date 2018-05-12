@@ -7,5 +7,5 @@ $GLOBALS['dbPass'] = '';
 $GLOBALS['dbName'] = 'hstinson';
 
 //Other configs
-$GLOBALS['defaultPageTitle'] = 'BlueDitPro'
+$GLOBALS['defaultPageTitle'] = 'BlueditPro';
 ?>
