@@ -24,6 +24,7 @@ include("navbar.php"); ?>
             echo "<h5>$link_text</h3>";
             ?>
           </div>
+          <?php if($_SESSION['u_id']==getLinkAuthor($link_id)){ ?>
           <div class="row px-3">
             <div class="col">
             </div>
@@ -31,9 +32,10 @@ include("navbar.php"); ?>
               <?php echo "<a href='editLink.php?link_id=$link_id''>edit</a>"; ?>
             </div>
             <div class="col-1">
-              <?php echo "<a href='editLink.php?link_id=$link_id''>delete</a>"; ?>
+              <?php echo "<a href='deleteLink.php?link_id=$link_id''>delete</a>"; ?>
             </div>
           </div>
+        <?php } ?>
         </div>
       </div>
     </div>
@@ -42,7 +44,4 @@ include("navbar.php"); ?>
   </div>
 </div>
 <?php
-for ($x=0; $x<100; $x++){
-  echo "<br>";
-}
 include("footer.php") ?>

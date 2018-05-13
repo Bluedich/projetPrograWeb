@@ -12,10 +12,8 @@ function pageTitle() {
 }
 
 function query_feedback($handle){
-  /*echo mysqli_info($handle);
-  echo "<br>";
+  echo mysqli_info($handle);
   echo mysqli_error($handle);
-  echo "<br>";*/
 }
 
 function checkLogin($email,$pwd){
@@ -73,16 +71,30 @@ function createLink($url,$text,$u_id){
 
 function editLink($link_id,$n_url,$n_text){
   $h = con();
-  mysqli_query($h, "UPDATE links SET `text` = '$n_text', `url` = '$n_url', `date` = CURRENT_TIMESTAMP WHERE id='$link_id'");
-  query_feedback($h);
+  if($_SESSION['u_id']==getLinkAuthor($link_id)){
+    mysqli_query($h, "UPDATE links SET `text` ='$n_text', `url` = '$n_url', `date` = CURRENT_TIMESTAMP WHERE id='$link_id'");
+    echo "<br><br><br><br><br><br><br>";
+    query_feedback($h);
+    $location = "Location: link.php?link_id=$link_id";
+    header($location);
+    die();
+  }
+  else{
+    exit("You're not allowed to modify this link.");
+  }
 }
 
 function deleteLink($id){
-  deleteLinkLikes($id); //We need to delete link's likes and dislikes first
-  deleteLinkComments($id);//Ass well as it's comments
-  $h = con();
-  mysqli_query($h, "DELETE FROM links WHERE id='$id'");
-  query_feedback($h);
+  if($_SESSION['u_id']==getLinkAuthor($id)){
+    deleteLinkLikes($id); //We need to delete link's likes and dislikes first
+    deleteLinkComments($id);//Ass well as it's comments
+    $h = con();
+    mysqli_query($h, "DELETE FROM links WHERE id='$id'");
+    query_feedback($h);
+  }
+  else{
+    exit("You're not allowed to delete this link.");
+  }
 }
 
 function deleteLinkLikes($link_id){
@@ -258,7 +270,15 @@ function getLinktext($link_id){
   $row=mysqli_fetch_assoc($r);
   $text = $row['text'];
   return $text;
+}
 
+function getLinkUrl($link_id){
+  $h = con();
+  $r = mysqli_query($h, "SELECT `url` FROM links WHERE id='$link_id'");
+  query_feedback($h);
+  $row=mysqli_fetch_assoc($r);
+  $url = $row['url'];
+  return $url;
 }
 
 function getLinkAuthor($link_id){
