@@ -85,6 +85,12 @@ echo "<br>";
 mysqli_query($h, $cLikes);
 query_feedback($h);
 
+mysqli_query($h, "INSERT INTO users (id, mail, user, pwd, last_con) VALUES (1,'max@gmail.com','max','max', CURRENT_TIMESTAMP)");
+mysqli_query($h, "INSERT INTO users (id, mail, user, pwd, last_con) VALUES (2,'bob@gmail.com','bob','bob', CURRENT_TIMESTAMP)");
+mysqli_query($h, "INSERT INTO `links` (`text`, `url`, `author`, `date`) VALUES ('Je conseille ce site', 'http://google.fr', '1', CURRENT_TIMESTAMP)");
 mysqli_close($h);
+addComment("Excellent site pour faire des recherches!", 2, 1);
+vote(1,1,1,'comment');
+
 
 ?>
